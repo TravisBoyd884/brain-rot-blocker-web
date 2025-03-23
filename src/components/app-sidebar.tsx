@@ -181,7 +181,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           href="https://gx.games/games/7q3sr0/oak-view-hall/tracks/cce087cb-3329-4ebb-9b35-bd7590e5b121/"
           target="_blank"
         >
-          Random
+          Random Rot
         </a>
       </SidebarFooter>
     </Sidebar>
