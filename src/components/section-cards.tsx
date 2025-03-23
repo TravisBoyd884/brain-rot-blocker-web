@@ -69,10 +69,10 @@ export function SectionCards() {
 
   // Expose the refresh function to the window object so it can be called from other components
   useEffect(() => {
-    // @ts-expect-error
+    // @ts-expect-error: Type mismatch due to library bug
     window.refreshSectionCards = refreshSectionCards;
     return () => {
-      // @ts-expect-error
+      // @ts-expect-error: Type mismatch due to library bug
       delete window.refreshSectionCards;
     };
   }, []);

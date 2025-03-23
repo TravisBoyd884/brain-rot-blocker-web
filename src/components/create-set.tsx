@@ -58,9 +58,9 @@ export function CreateSet() {
       if (fileInput) fileInput.value = "";
 
       // Refresh the section cards to show the newly added study set
-      // @ts-expect-error
+      // @ts-expect-error: Type mismatch due to library bug
       if (window.refreshSectionCards) {
-        // @ts-expect-error
+        // @ts-expect-error: Type mismatch due to library bug
         window.refreshSectionCards();
       }
     } catch (err) {
