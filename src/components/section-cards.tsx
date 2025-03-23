@@ -29,7 +29,7 @@ function UniqueCard({
       <CardHeader>
         <CardDescription>Study Set</CardDescription>
         <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-          <a href="/test">{title}</a>
+          <a href={`/test?subject=${encodeURIComponent(title)}`}>{title}</a>
         </CardTitle>
         <CardAction>
           <Badge variant="outline">
@@ -59,9 +59,27 @@ export function SectionCards() {
   //
   //
   const [titles, setTitles] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  // Function to refresh the section cards
+  const refreshSectionCards = () => {
+    setRefreshTrigger(prev => prev + 1);
+  };
+
+  // Expose the refresh function to the window object so it can be called from other components
+  useEffect(() => {
+    // @ts-ignore
+    window.refreshSectionCards = refreshSectionCards;
+    return () => {
+      // @ts-ignore
+      delete window.refreshSectionCards;
+    };
+  }, []);
 
   useEffect(() => {
     const fetchTitles = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch(
           "http://127.0.0.1:5000/get_subjects_by_user",
@@ -83,22 +101,55 @@ export function SectionCards() {
         setTitles(sortedTitles.slice(0, 4));
       } catch (error) {
         console.error("Failed to fetch titles:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchTitles();
-  }, []);
+  }, [refreshTrigger]); // Refresh when the trigger changes
+
+  // Skeleton loader for cards
+  const CardSkeleton = () => (
+    <Card className="@container/card animate-pulse">
+      <CardHeader>
+        <div className="h-4 w-20 bg-muted rounded mb-2"></div>
+        <div className="h-8 w-3/4 bg-muted rounded"></div>
+        <CardAction>
+          <div className="h-6 w-32 bg-muted rounded"></div>
+        </CardAction>
+      </CardHeader>
+      <CardFooter className="flex-col items-start gap-1.5">
+        <div className="h-4 w-40 bg-muted rounded"></div>
+        <div className="h-4 w-32 bg-muted rounded"></div>
+      </CardFooter>
+    </Card>
+  );
+
   return (
     <div className="grid grid-cols-2 gap-4 px-4 lg:px-6">
-      {titles.map((title, index) => (
-        <UniqueCard
-          key={index}
-          title={title}
-          numTerms={10}
-          lastStudied="April 24, 2024"
-          score={80}
-        />
-      ))}
+      {isLoading ? (
+        // Show skeletons while loading
+        Array(4).fill(0).map((_, index) => (
+          <CardSkeleton key={`skeleton-${index}`} />
+        ))
+      ) : titles.length > 0 ? (
+        // Show actual cards when loaded
+        titles.map((title, index) => (
+          <UniqueCard
+            key={index}
+            title={title}
+            numTerms={10}
+            lastStudied="April 24, 2024"
+            score={80}
+          />
+        ))
+      ) : (
+        // Show message when no cards are available
+        <div className="col-span-2 text-center py-10">
+          <p className="text-muted-foreground">No study sets found. Create one to get started!</p>
+        </div>
+      )}
     </div>
   );
 }

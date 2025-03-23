@@ -1,25 +1,31 @@
-"use client";
-import { useEffect } from "react";
+'use client';
+
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { TestCarousel } from "@/components/test-carousel";
+import { SiteHeader } from "@/components/site-header";
+import { AppSidebar } from "@/components/app-sidebar";
+import { useSearchParams } from 'next/navigation';
 
 export default function Test() {
-  useEffect(() => {
-    const fetchTitles = async () => {
-      try {
-        const response = await fetch(
-          "http://127.0.0.1:5000/get_question_by_user",
-        );
-        const data = await response.json();
-        const cleanedText = data.question.replace(/```/g, "").trim();
-        const cleanerText = cleanedText.replace(/json/g, "").trim();
+  const searchParams = useSearchParams();
+  const subject = searchParams.get('subject') || 'Geography';
 
-        console.log(cleanerText);
-        console.log(JSON.parse(cleanerText));
-      } catch (error) {
-        console.error("Failed to fetch titles:", error);
+  return (
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
       }
-    };
-
-    fetchTitles();
-  }, []);
-  return <div>Test</div>;
+    >
+      <AppSidebar variant="inset" />
+      <SidebarInset>
+        <SiteHeader />
+        <div className="w-full h-full flex justify-center items-center">
+          <TestCarousel subject={subject} />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
 }

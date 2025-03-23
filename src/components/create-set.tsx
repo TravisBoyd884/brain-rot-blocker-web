@@ -33,6 +33,7 @@ export function CreateSet() {
 
     try {
       const formData = new FormData();
+      console.log(file);
       formData.append("subject", title);
       formData.append("file", file);
 
@@ -55,6 +56,13 @@ export function CreateSet() {
         "study-file",
       ) as HTMLInputElement;
       if (fileInput) fileInput.value = "";
+      
+      // Refresh the section cards to show the newly added study set
+      // @ts-ignore
+      if (window.refreshSectionCards) {
+        // @ts-ignore
+        window.refreshSectionCards();
+      }
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "An unknown error occurred",
@@ -103,4 +111,3 @@ export function CreateSet() {
     </Card>
   );
 }
-

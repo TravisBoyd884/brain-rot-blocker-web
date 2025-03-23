@@ -29,111 +29,60 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export const description = "An interactive area chart";
 
-const chartData = [
-  { date: "2024-04-01", youtube: 222, study: 150 },
-  { date: "2024-04-02", youtube: 97, study: 180 },
-  { date: "2024-04-03", youtube: 167, study: 120 },
-  { date: "2024-04-04", youtube: 242, study: 260 },
-  { date: "2024-04-05", youtube: 373, study: 290 },
-  { date: "2024-04-06", youtube: 301, study: 340 },
-  { date: "2024-04-07", youtube: 245, study: 180 },
-  { date: "2024-04-08", youtube: 409, study: 320 },
-  { date: "2024-04-09", youtube: 59, study: 110 },
-  { date: "2024-04-10", youtube: 261, study: 190 },
-  { date: "2024-04-11", youtube: 327, study: 350 },
-  { date: "2024-04-12", youtube: 292, study: 210 },
-  { date: "2024-04-13", youtube: 342, study: 380 },
-  { date: "2024-04-14", youtube: 137, study: 220 },
-  { date: "2024-04-15", youtube: 120, study: 170 },
-  { date: "2024-04-16", youtube: 138, study: 190 },
-  { date: "2024-04-17", youtube: 446, study: 360 },
-  { date: "2024-04-18", youtube: 364, study: 410 },
-  { date: "2024-04-19", youtube: 243, study: 180 },
-  { date: "2024-04-20", youtube: 89, study: 150 },
-  { date: "2024-04-21", youtube: 137, study: 200 },
-  { date: "2024-04-22", youtube: 224, study: 170 },
-  { date: "2024-04-23", youtube: 138, study: 230 },
-  { date: "2024-04-24", youtube: 387, study: 290 },
-  { date: "2024-04-25", youtube: 215, study: 250 },
-  { date: "2024-04-26", youtube: 75, study: 130 },
-  { date: "2024-04-27", youtube: 383, study: 420 },
-  { date: "2024-04-28", youtube: 122, study: 180 },
-  { date: "2024-04-29", youtube: 315, study: 240 },
-  { date: "2024-04-30", youtube: 454, study: 380 },
-  { date: "2024-05-01", youtube: 165, study: 220 },
-  { date: "2024-05-02", youtube: 293, study: 310 },
-  { date: "2024-05-03", youtube: 247, study: 190 },
-  { date: "2024-05-04", youtube: 385, study: 420 },
-  { date: "2024-05-05", youtube: 481, study: 390 },
-  { date: "2024-05-06", youtube: 498, study: 520 },
-  { date: "2024-05-07", youtube: 388, study: 300 },
-  { date: "2024-05-08", youtube: 149, study: 210 },
-  { date: "2024-05-09", youtube: 227, study: 180 },
-  { date: "2024-05-10", youtube: 293, study: 330 },
-  { date: "2024-05-11", youtube: 335, study: 270 },
-  { date: "2024-05-12", youtube: 197, study: 240 },
-  { date: "2024-05-13", youtube: 197, study: 160 },
-  { date: "2024-05-14", youtube: 448, study: 490 },
-  { date: "2024-05-15", youtube: 473, study: 380 },
-  { date: "2024-05-16", youtube: 338, study: 400 },
-  { date: "2024-05-17", youtube: 499, study: 420 },
-  { date: "2024-05-18", youtube: 315, study: 350 },
-  { date: "2024-05-19", youtube: 235, study: 180 },
-  { date: "2024-05-20", youtube: 177, study: 230 },
-  { date: "2024-05-21", youtube: 82, study: 140 },
-  { date: "2024-05-22", youtube: 81, study: 120 },
-  { date: "2024-05-23", youtube: 252, study: 290 },
-  { date: "2024-05-24", youtube: 294, study: 220 },
-  { date: "2024-05-25", youtube: 201, study: 250 },
-  { date: "2024-05-26", youtube: 213, study: 170 },
-  { date: "2024-05-27", youtube: 420, study: 460 },
-  { date: "2024-05-28", youtube: 233, study: 190 },
-  { date: "2024-05-29", youtube: 78, study: 130 },
-  { date: "2024-05-30", youtube: 340, study: 280 },
-  { date: "2024-05-31", youtube: 178, study: 230 },
-  { date: "2024-06-01", youtube: 178, study: 200 },
-  { date: "2024-06-02", youtube: 470, study: 410 },
-  { date: "2024-06-03", youtube: 103, study: 160 },
-  { date: "2024-06-04", youtube: 439, study: 380 },
-  { date: "2024-06-05", youtube: 88, study: 140 },
-  { date: "2024-06-06", youtube: 294, study: 250 },
-  { date: "2024-06-07", youtube: 323, study: 370 },
-  { date: "2024-06-08", youtube: 385, study: 320 },
-  { date: "2024-06-09", youtube: 438, study: 480 },
-  { date: "2024-06-10", youtube: 155, study: 200 },
-  { date: "2024-06-11", youtube: 92, study: 150 },
-  { date: "2024-06-12", youtube: 492, study: 420 },
-  { date: "2024-06-13", youtube: 81, study: 130 },
-  { date: "2024-06-14", youtube: 426, study: 380 },
-  { date: "2024-06-15", youtube: 307, study: 350 },
-  { date: "2024-06-16", youtube: 371, study: 310 },
-  { date: "2024-06-17", youtube: 475, study: 520 },
-  { date: "2024-06-18", youtube: 107, study: 170 },
-  { date: "2024-06-19", youtube: 341, study: 290 },
-  { date: "2024-06-20", youtube: 408, study: 450 },
-  { date: "2024-06-21", youtube: 169, study: 210 },
-  { date: "2024-06-22", youtube: 317, study: 270 },
-  { date: "2024-06-23", youtube: 480, study: 530 },
-  { date: "2024-06-24", youtube: 132, study: 180 },
-  { date: "2024-06-25", youtube: 141, study: 190 },
-  { date: "2024-06-26", youtube: 434, study: 380 },
-  { date: "2024-06-27", youtube: 448, study: 490 },
-  { date: "2024-06-28", youtube: 149, study: 200 },
-  { date: "2024-06-29", youtube: 103, study: 160 },
-  { date: "2024-06-30", youtube: 446, study: 400 },
-];
+// Data before using the app (March 1 - March 15, 2025)
+const beforeAppData = Array.from({ length: 15 }, (_, i) => {
+  const date = new Date(2025, 2, 1); // March 1, 2025
+  date.setDate(date.getDate() + i);
+  const dateStr = date.toISOString().split('T')[0];
+  
+  // YouTube usage high, study time low in the beginning
+  const youtube = Math.floor(Math.random() * 300) + 200; // 200-500 minutes
+  const study = Math.floor(Math.random() * 150) + 100; // 100-250 minutes
+  
+  return { date: dateStr, youtube, study };
+});
+
+// Data after starting to use the app (March 16 - March 23, 2025)
+const afterAppData = Array.from({ length: 8 }, (_, i) => {
+  const date = new Date(2025, 2, 16); // March 16, 2025
+  date.setDate(date.getDate() + i);
+  const dateStr = date.toISOString().split('T')[0];
+  
+  // Show a dramatic decrease in YouTube usage and increase in study time
+  const youtube = Math.floor(Math.random() * 120) + 30; // 30-150 minutes
+  const study = Math.floor(Math.random() * 250) + 250; // 250-500 minutes
+  
+  return { date: dateStr, youtube, study };
+});
+
+// Add specific data for March 21st (which might be missing due to date calculation issues)
+const march21Data = {
+  date: "2025-03-21",
+  youtube: 45, // Very low YouTube usage
+  study: 420, // Very high study time - nice!
+};
+
+// Combine all datasets, ensuring March 21st is included
+const allDataWithoutDuplicates = [...beforeAppData, ...afterAppData];
+// Remove any existing March 21 entries to avoid duplicates
+const filteredData = allDataWithoutDuplicates.filter(item => item.date !== "2025-03-21");
+// Add our specific March 21 data
+const chartData = [...filteredData, march21Data];
+
+// Sort the data by date to ensure proper display
+chartData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
 const chartConfig = {
   visitors: {
     label: "Visitors",
   },
   youtube: {
-    label: "Youtube",
-    color: "var(--youtube)",
+    label: "YouTube Time (min)",
+    color: "var(--destructive)",
   },
   study: {
-    label: "Study",
-    color: "var(--primary)",
+    label: "Study Time (min)",
+    color: "hsl(var(--success))",
   },
 } satisfies ChartConfig;
 
@@ -149,10 +98,10 @@ export function ChartAreaInteractive() {
 
   const filteredData = chartData.filter((item) => {
     const date = new Date(item.date);
-    const referenceDate = new Date("2024-06-30");
-    let daysToSubtract = 90;
+    const referenceDate = new Date("2025-03-23"); // End date (March 23, 2025)
+    let daysToSubtract = 23; // Show the full month by default
     if (timeRange === "30d") {
-      daysToSubtract = 30;
+      daysToSubtract = 30; // Will show all available data
     } else if (timeRange === "7d") {
       daysToSubtract = 7;
     }
@@ -164,12 +113,12 @@ export function ChartAreaInteractive() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Study/Youtube History</CardTitle>
+        <CardTitle>Study/Youtube Minutes</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Total for the last 3 months
+            Brain Rot Blocker Impact: Notice the dramatic shift after March 15, 2025
           </span>
-          <span className="@[540px]/card:hidden">Last 3 months</span>
+          <span className="@[540px]/card:hidden">App Impact: See the difference!</span>
         </CardDescription>
         <CardAction>
           <ToggleGroup
@@ -179,8 +128,8 @@ export function ChartAreaInteractive() {
             variant="outline"
             className="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
           >
-            <ToggleGroupItem value="90d">Last 3 months</ToggleGroupItem>
-            <ToggleGroupItem value="30d">Last 30 days</ToggleGroupItem>
+            <ToggleGroupItem value="90d">Full month</ToggleGroupItem>
+            <ToggleGroupItem value="30d">All data</ToggleGroupItem>
             <ToggleGroupItem value="7d">Last 7 days</ToggleGroupItem>
           </ToggleGroup>
           <Select value={timeRange} onValueChange={setTimeRange}>
@@ -189,14 +138,14 @@ export function ChartAreaInteractive() {
               size="sm"
               aria-label="Select a value"
             >
-              <SelectValue placeholder="Last 3 months" />
+              <SelectValue placeholder="Full month" />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
               <SelectItem value="90d" className="rounded-lg">
-                Last 3 months
+                Full month
               </SelectItem>
               <SelectItem value="30d" className="rounded-lg">
-                Last 30 days
+                All data
               </SelectItem>
               <SelectItem value="7d" className="rounded-lg">
                 Last 7 days
@@ -215,24 +164,24 @@ export function ChartAreaInteractive() {
               <linearGradient id="fillYoutube" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-youtube)"
-                  stopOpacity={1.0}
+                  stopColor="var(--destructive)"
+                  stopOpacity={0.7}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-youtube)"
+                  stopColor="var(--destructive)"
                   stopOpacity={0.1}
                 />
               </linearGradient>
               <linearGradient id="fillStudy" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-study)"
-                  stopOpacity={0.8}
+                  stopColor="hsl(var(--success))"
+                  stopOpacity={0.7}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-study)"
+                  stopColor="hsl(var(--success))"
                   stopOpacity={0.1}
                 />
               </linearGradient>
@@ -243,25 +192,35 @@ export function ChartAreaInteractive() {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              minTickGap={32}
+              minTickGap={0} // Reduced gap to show more tick marks
+              ticks={chartData.map(item => item.date)} // Force display of all dates
               tickFormatter={(value) => {
                 const date = new Date(value);
-                return date.toLocaleDateString("en-US", {
+                const formattedDate = date.toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
                 });
+                // Highlight March 21st
+                return date.getDate() === 21 && date.getMonth() === 2 
+                  ? `★ ${formattedDate} ★` 
+                  : formattedDate;
               }}
             />
             <ChartTooltip
               cursor={false}
-              defaultIndex={isStudy ? -1 : 10}
+              defaultIndex={20} // Show tooltip on March 21st by default
               content={
                 <ChartTooltipContent
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
+                    const date = new Date(value);
+                    const formattedDate = date.toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
                     });
+                    
+                    // Add special indicator for before/after app adoption
+                    const isAfterAppAdoption = date >= new Date(2025, 2, 16); // March 16, 2025
+                    return `${formattedDate} ${isAfterAppAdoption ? "✅" : "❌"}`;
                   }}
                   indicator="dot"
                 />
@@ -271,15 +230,15 @@ export function ChartAreaInteractive() {
               dataKey="study"
               type="natural"
               fill="url(#fillStudy)"
-              stroke="var(--color-study)"
-              stackId="a"
+              stroke="hsl(var(--success))"
+              strokeWidth={2}
             />
             <Area
               dataKey="youtube"
               type="natural"
               fill="url(#fillYoutube)"
-              stroke="var(--color-youtube)"
-              stackId="a"
+              stroke="var(--destructive)"
+              strokeWidth={2}
             />
           </AreaChart>
         </ChartContainer>
