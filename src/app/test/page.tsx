@@ -5,11 +5,20 @@ import { TestCarousel } from "@/components/test-carousel";
 import { SiteHeader } from "@/components/site-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default function Test() {
+function TestContent() {
   const searchParams = useSearchParams();
   const subject = searchParams.get('subject') || 'Geography';
 
+  return (
+    <div className="w-full h-full flex justify-center items-center">
+      <TestCarousel subject={subject} />
+    </div>
+  );
+}
+
+export default function Test() {
   return (
     <SidebarProvider
       style={
@@ -22,9 +31,9 @@ export default function Test() {
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />
-        <div className="w-full h-full flex justify-center items-center">
-          <TestCarousel subject={subject} />
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <TestContent />
+        </Suspense>
       </SidebarInset>
     </SidebarProvider>
   );
