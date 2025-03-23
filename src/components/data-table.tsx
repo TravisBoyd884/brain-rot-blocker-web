@@ -31,7 +31,6 @@ import {
   IconGripVertical,
   IconLayoutColumns,
   IconLoader,
-  IconPlus,
   IconTrendingUp,
 } from "@tabler/icons-react";
 import {
@@ -50,7 +49,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-import { toast } from "sonner";
 import { z } from "zod";
 
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -62,7 +60,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Drawer,
   DrawerClose,
@@ -99,7 +96,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 export const schema = z.object({
   id: z.number(),
@@ -139,10 +136,8 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     id: "select",
-    header: ({ table }) => (
-      <div className="flex items-center justify-center"></div>
-    ),
-    cell: ({ row }) => <div className="flex items-center justify-center"></div>,
+    header: () => <div className="flex items-center justify-center"></div>,
+    cell: () => <div className="flex items-center justify-center"></div>,
     enableSorting: false,
     enableHiding: false,
   },

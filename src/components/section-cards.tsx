@@ -1,8 +1,4 @@
-import {
-  IconTrendingDown,
-  IconTrendingUp,
-  IconMoodCheck,
-} from "@tabler/icons-react";
+import { IconMoodCheck } from "@tabler/icons-react";
 
 import { Badge } from "@/components/ui/badge";
 import {
