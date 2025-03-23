@@ -14,7 +14,7 @@ import {
 
 interface Problem {
   problem: string;
-  [key: string]: any;
+  [key: string]: string;
 }
 
 export function TestCarousel(props: { subject: string | undefined }) {

@@ -56,11 +56,11 @@ export function CreateSet() {
         "study-file",
       ) as HTMLInputElement;
       if (fileInput) fileInput.value = "";
-      
+
       // Refresh the section cards to show the newly added study set
-      // @ts-ignore
+      // @ts-expect-error
       if (window.refreshSectionCards) {
-        // @ts-ignore
+        // @ts-expect-error
         window.refreshSectionCards();
       }
     } catch (err) {

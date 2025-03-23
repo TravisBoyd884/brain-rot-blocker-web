@@ -64,15 +64,15 @@ export function SectionCards() {
 
   // Function to refresh the section cards
   const refreshSectionCards = () => {
-    setRefreshTrigger(prev => prev + 1);
+    setRefreshTrigger((prev) => prev + 1);
   };
 
   // Expose the refresh function to the window object so it can be called from other components
   useEffect(() => {
-    // @ts-ignore
+    // @ts-expect-error
     window.refreshSectionCards = refreshSectionCards;
     return () => {
-      // @ts-ignore
+      // @ts-expect-error
       delete window.refreshSectionCards;
     };
   }, []);
@@ -130,9 +130,9 @@ export function SectionCards() {
     <div className="grid grid-cols-2 gap-4 px-4 lg:px-6">
       {isLoading ? (
         // Show skeletons while loading
-        Array(4).fill(0).map((_, index) => (
-          <CardSkeleton key={`skeleton-${index}`} />
-        ))
+        Array(4)
+          .fill(0)
+          .map((_, index) => <CardSkeleton key={`skeleton-${index}`} />)
       ) : titles.length > 0 ? (
         // Show actual cards when loaded
         titles.map((title, index) => (
@@ -147,7 +147,9 @@ export function SectionCards() {
       ) : (
         // Show message when no cards are available
         <div className="col-span-2 text-center py-10">
-          <p className="text-muted-foreground">No study sets found. Create one to get started!</p>
+          <p className="text-muted-foreground">
+            No study sets found. Create one to get started!
+          </p>
         </div>
       )}
     </div>
